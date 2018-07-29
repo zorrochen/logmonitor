@@ -57,12 +57,10 @@ func MonitorTask() {
 	globalStat = map[string]*SrvLogStat{}
 	for {
 		for _, v := range globalStat {
-			log.LOG.I("[MonitorTask] [%s] begin...", v.srvName)
 			currentTimeStr := time.Now().Local().Format("15:04")
 			v.logStatCache.Set(currentTimeStr, v.currentLogCount)
 			log.LOG.I("[MonitorTask] [%s] set(%s, %d)", v.srvName, currentTimeStr, v.currentLogCount)
 			v.currentLogCount = 0
-			log.LOG.I("[MonitorTask] [%s] complete...", v.srvName)
 		}
 		<-time.After(time.Minute)
 	}
@@ -72,7 +70,6 @@ func MonitorTriggerTask() {
 	for {
 		for _, v := range globalStat {
 			totolErrCnt := 0
-			//log.LOG.I("[MonitorTriggerTask] [%s] begin...", v.srvName)
 			logStatList, ok, err := v.logStatCache.GetAllWithoutUpdate()
 			if err != nil || !ok {
 				goto LOOP_END
@@ -102,7 +99,6 @@ func MonitorTriggerTask() {
 			}
 		LOOP_END:
 			continue
-			//log.LOG.I("[MonitorTriggerTask] [%s] complete...", v.srvName)
 		}
 		//探测频率
 		<-time.After(time.Second)
