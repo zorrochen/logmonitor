@@ -1,10 +1,14 @@
 package http_server
 
 import (
+	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"logmonitor/base/log"
 	"logmonitor/base/pub"
+	"net/http"
+	"os"
+	"os/signal"
 	"time"
 )
 
@@ -40,8 +44,30 @@ func Run(ip string, port string) {
 	// 未知路由，添加自定义处理
 	r.NoRoute(NotFoundPrint)
 
-	// 启动http服务
-	r.Run(fmt.Sprintf("%s:%s", ip, port))
+	// 启动http服务(graceful)
+	srv := &http.Server{
+		Addr:    fmt.Sprintf("%s:%s", ip, port),
+		Handler: r,
+	}
+
+	go func() {
+		// service connections
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.LOG.E("listen: %s\n", err)
+		}
+	}()
+
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 5 seconds.
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		log.LOG.E("Server Shutdown:", err)
+	}
 }
 
 // 请求入口，添加统一打印
