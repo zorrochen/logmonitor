@@ -1,0 +1,8 @@
+<seelog type="adaptive" mininterval="200" maxinterval="1000" critmsgcount="1000" minlevel="trace">
+    <outputs formatid="common">
+        <rollingfile type="date" datepattern="2006-01-02" filename="./logs/run.log" maxrolls="60"/>
+    </outputs>
+    <formats>
+        <format id="common" format="%Date(2006-01-02 15:04:05.000) [%l] [%File %Line] %Msg%n"/>
+    </formats>
+</seelog>
