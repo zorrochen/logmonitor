@@ -29,7 +29,7 @@ type logger struct {
 	EnableErrorLogMonitor bool
 }
 
-func LogInit(srvName string, logCfgPath string, enableErrorLogMonitor bool, logMonitorUrl string) {
+func Init(srvName string, logCfgPath string, enableErrorLogMonitor bool, logMonitorUrl string) {
 	lg, err := seelog.LoggerFromConfigAsFile(logCfgPath)
 	if err != nil {
 		panic(err)

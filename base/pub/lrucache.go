@@ -70,16 +70,16 @@ func (lru *LRUCache) Set(k, v interface{}) error {
 // 	return v, false, nil
 // }
 
-func (lru *LRUCache) GetAllWithoutUpdate() (retlist []interface{}, ret bool, err error) {
+func (lru *LRUCache) GetAllWithoutUpdate() (retlist []interface{}, err error) {
 	if lru.cacheMap == nil {
-		return retlist, false, errors.New("LRUCache init failed.")
+		return retlist, errors.New("LRUCache init failed.")
 	}
 
 	for e := lru.dlist.Front(); e != nil; e = e.Next() {
 		retlist = append(retlist, e.Value.(*CacheNode).Value)
 	}
 
-	return retlist, true, nil
+	return retlist, nil
 }
 
 func (lru *LRUCache) Remove(k interface{}) bool {

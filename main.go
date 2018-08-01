@@ -9,6 +9,7 @@ import (
 	"logmonitor/base/log"
 	"logmonitor/config"
 	"logmonitor/handler"
+	"logmonitor/task"
 )
 
 var (
@@ -30,10 +31,13 @@ func main() {
 	config.Init(*ConfPath)
 
 	// 日志初始化
-	log.LogInit("logmonitor", *LogCfgpath, false, "")
+	log.Init("logmonitor", *LogCfgpath, false, "")
 
 	// 业务模块初始化
 	handler.Init()
+
+	// 任务初始化
+	task.Init()
 
 	// 服务启动
 	log.LOG.I("server start!!!")
