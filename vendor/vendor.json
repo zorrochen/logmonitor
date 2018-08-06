@@ -1,0 +1,43 @@
+{
+	"comment": "",
+	"ignore": "",
+	"package": [
+		{
+			"checksumSHA1": "wexhbt0j0n/kgguurS/goacgHw0=",
+			"path": "github.com/cihub/seelog",
+			"revision": "175e6e3d439fe2e1cee7ab652b12eb546c145a13",
+			"revisionTime": "2016-10-09T22:53:54Z"
+		},
+		{
+			"checksumSHA1": "nMOI1SR4bJ+Pz6d9bpkXxsD/buo=",
+			"path": "github.com/cihub/seelog/archive",
+			"revision": "175e6e3d439fe2e1cee7ab652b12eb546c145a13",
+			"revisionTime": "2016-10-09T22:53:54Z"
+		},
+		{
+			"checksumSHA1": "oSd7EVei192qS3uYyCAMx9zV3Y8=",
+			"path": "github.com/cihub/seelog/archive/gzip",
+			"revision": "175e6e3d439fe2e1cee7ab652b12eb546c145a13",
+			"revisionTime": "2016-10-09T22:53:54Z"
+		},
+		{
+			"checksumSHA1": "dtRA+XeH55DnnUnKRURBXGtEfws=",
+			"path": "github.com/cihub/seelog/archive/tar",
+			"revision": "175e6e3d439fe2e1cee7ab652b12eb546c145a13",
+			"revisionTime": "2016-10-09T22:53:54Z"
+		},
+		{
+			"checksumSHA1": "y3/I46MDDS4wEKHlQjNyK0C1Jjc=",
+			"path": "github.com/cihub/seelog/archive/zip",
+			"revision": "175e6e3d439fe2e1cee7ab652b12eb546c145a13",
+			"revisionTime": "2016-10-09T22:53:54Z"
+		},
+		{
+			"checksumSHA1": "QZRPtw16DtVTHEpaEopwXZAlMEI=",
+			"path": "github.com/cihub/seelog/io/iotest",
+			"revision": "175e6e3d439fe2e1cee7ab652b12eb546c145a13",
+			"revisionTime": "2016-10-09T22:53:54Z"
+		}
+	],
+	"rootPath": "logmonitor"
+}

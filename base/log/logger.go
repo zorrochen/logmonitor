@@ -86,15 +86,15 @@ func (self *logger) Critical(format string, args ...interface{}) error {
 }
 
 func (self *logger) I(format string, args ...interface{}) {
-	self.Info(format, args...)
+	seelog.Infof(format, args...)
 }
 
 func (self *logger) W(format string, args ...interface{}) error {
-	return self.Warn(format, args...)
+	return seelog.Warnf(format, args...)
 }
 
 func (self *logger) E(format string, args ...interface{}) error {
-	return self.Error(format, args...)
+	return seelog.Errorf(format, args...)
 }
 
 //================= 错误日志采集，以便监控 =================
