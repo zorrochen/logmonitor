@@ -27,6 +27,7 @@ func Register(method, uri string, handler ...gin.HandlerFunc) {
 
 func Run(ip string, port string) {
 	r := gin.New()
+	gin.Logger()
 
 	// 中间件
 	r.Use(ReqSimplePrint)
@@ -74,7 +75,8 @@ func Run(ip string, port string) {
 // TODO:添加用户id,版本号
 func ReqSimplePrint(c *gin.Context) {
 	// 打印请求
-	log.LOG.Info("[ReqSimplePrint] %s, %s", c.Request.URL, pub.CopyHttpRequestBody(c.Request))
+	log.LOG.Info("[ReqSimplePrint] %s, %s, %s, %s",
+		c.Request.URL, c.Request.Method, pub.CopyHttpRequestBody(c.Request), c.ClientIP())
 
 	// 计算耗时
 	t := time.Now()
@@ -83,7 +85,8 @@ func ReqSimplePrint(c *gin.Context) {
 	timecost := fmt.Sprintf("%d", ts/time.Millisecond)
 
 	// 打印结果
-	log.LOG.Info("[ReqSimplePrint-resp] %s, %s(ms)", c.Request.URL, timecost)
+	log.LOG.Info("[ReqSimplePrint-resp] %s, %s(ms), %d, %s",
+		c.Request.URL, timecost, c.Writer.Status(), c.GetString("respJson"))
 }
 
 // 404记录

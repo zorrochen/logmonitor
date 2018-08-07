@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"logmonitor/base/log"
+	"net/http"
 )
 
 func pingHandler(c *gin.Context) {
@@ -11,18 +11,18 @@ func pingHandler(c *gin.Context) {
 	err := c.Bind(&req)
 	if err != nil {
 		log.LOG.E("%v, %v\n", req, err)
+		ErrResp(c, http.StatusBadRequest)
 		return
 	}
 
 	resp, err := ping(req)
 	if err != nil {
 		log.LOG.E("%v, %v\n", req, err)
+		ErrResp(c, http.StatusInternalServerError)
 		return
 	}
 
-	respJson, _ := json.Marshal(resp)
-	c.Set("respJson", respJson)
-	c.JSON(200, resp)
+	SuccResp(c, resp)
 }
 
 func LogMonitorHandler(c *gin.Context) {
@@ -30,16 +30,16 @@ func LogMonitorHandler(c *gin.Context) {
 	err := c.Bind(&req)
 	if err != nil {
 		log.LOG.E("%v, %v\n", req, err)
+		ErrResp(c, http.StatusBadRequest)
 		return
 	}
 
 	resp, err := LogMonitor(req)
 	if err != nil {
 		log.LOG.E("%v, %v\n", req, err)
+		ErrResp(c, http.StatusInternalServerError)
 		return
 	}
 
-	respJson, _ := json.Marshal(resp)
-	c.Set("respJson", respJson)
-	c.JSON(200, resp)
+	SuccResp(c, resp)
 }
