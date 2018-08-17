@@ -10,7 +10,7 @@ func pingHandler(c *gin.Context) {
 	req := pingReq{}
 	err := c.Bind(&req)
 	if err != nil {
-		log.LOG.E("%v, %v\n", req, err)
+		log.LOG.E("%v,  %v\n", req, err)
 		ErrResp(c, http.StatusBadRequest)
 		return
 	}
