@@ -1,8 +1,12 @@
+workspace:
+  base: /go
+  path: src/aaa
+
 pipeline:
   build:
-    image: golang
+    image: localhost/golang
     commands:
       - go build
       - go test
 
-branches: master
+branches: [master, test]
