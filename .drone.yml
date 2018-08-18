@@ -9,4 +9,4 @@ pipeline:
       - go build
       - go test
 
-branches: [master, test]
+branches: master
