@@ -1,6 +1,6 @@
 workspace:
   base: /go
-  path: src/aaa
+  path: src/logmonitor
 
 pipeline:
   build:
