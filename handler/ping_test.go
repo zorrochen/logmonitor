@@ -16,7 +16,7 @@ func Test_ping(t *testing.T) {
 		wantErr bool
 	}{
 		// TODO: Add test cases.
-		{name: "t01", args: args{req: pingReq{}}},
+		{name: "t01", args: args{req: pingReq{}}, want: &pingResp{}},
 	}
 	for _, tt := range tests {
 		got, err := ping(tt.args.req)
