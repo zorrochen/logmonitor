@@ -9,4 +9,9 @@ pipeline:
       - go build
       - go test ./handler
 
+  deploy:
+    image: logmonitor_logmonitor
+    ports:
+     - "7101:7101"
+
 branches: master
